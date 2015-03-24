@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>InQuizitive</title>
+
+	{% load staticfiles %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "polls/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+
+    <!-- Fonts -->
+    <link href="{% static "polls/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static "polls/css/nivo-lightbox.css" %}" rel="stylesheet" />
+	<link href="{% static "polls/css/nivo-lightbox-theme/default/default.css" %}" rel="stylesheet" type="text/css" />
+	<link href="{% static "polls/css/animate.css" %}" rel="stylesheet" />
+    <!-- Squad theme CSS -->
+    <link href="{% static "polls/css/style.css" %}" rel="stylesheet">
+	<link href="{% static "polls/color/default.css" %}" rel="stylesheet">
+
+</head>
+
+<body data-spy="scroll">
+
+<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li>
+									<a href="#about" class="gn-icon gn-icon-download">Questions</a>
+								</li>
+															</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a href="/">InQuizitive</a></li>
+			</ul>
+	</div>
+
+		{% block content %}	
+	<!-- Section: intro -->
+    <section id="intro" class="intro">
+		<div class="slogan">
+			<h1>Welcome to InQuizitive</h1>
+			<p><i>Inquizitive </i>lets teachers engage and assess their students with quizzes on laptops, smartphones and tablets. </br>
+			Teachers can now easily make out what areas students need more practice with.</br>
+			All this in a fun and easy way!</p>
+			<a href="#about" class="btn btn-skin scroll">Questions</a>
+		</div>	
+    </section>
+	<!-- /Section: intro -->
+
+	<!-- Section: about -->
+    <section id="about" class="home-section text-center bg-gray">
+		<div class="heading-about marginbot-50">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+		
+					<div class="section-heading">
+					<h3> Please answer the following questions!</h3>
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a><br/>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+	<!-- /Section: about -->
+	
+{% endblock %}
+	
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12">
+			<p>Built by Acme</p>
+			</a></p>
+				</div>
+			</div>	
+		</div>
+	</footer>
+
+    <!-- Core JavaScript Files -->
+    <script src="{% static "polls/js/jquery.min.js" %}"></script>
+    <script src="{% static "polls/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "polls/js/jquery.easing.min.js" %}"></script>	
+	<script src="{% static "polls/js/classie.js" %}"></script>
+	<script src="{% static "polls/js/gnmenu.js" %}"></script>
+	<script src="{% static "polls/js/jquery.scrollTo.js" %}"></script>
+	<script src="{% static "polls/js/nivo-lightbox.min.js" %}"></script>
+	<script src="{% static "polls/js/stellar.js" %}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static "polls/js/custom.js" %}"></script>
+
+</body>
+
+</html>
